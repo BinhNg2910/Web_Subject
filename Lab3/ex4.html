@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>Lab3-Q4</title>
+        <script>
+            function lionBtn() {
+                var display_mess = document.getElementById("display-message");
+                display_mess.innerHTML = "Roar Roar Roar !!!";
+                display_mess.style.color = "orange";
+            }
+            function frogBtn() {
+                var display_mess = document.getElementById("display-message");
+                display_mess.innerHTML = "Ribbit Ribbit Ribbit !!!";
+                display_mess.style.color = "green";
+            }
+        </script>
+    </head>
+    <body>
+        <img src="img/lion.jpg" onclick="lionBtn()">
+        <img src="img/frog.jpg" onclick="frogBtn()">
+        <br><br>
+        <span id="display-message" style="font-size: 30px;"></span>
+    </body>
+</html>

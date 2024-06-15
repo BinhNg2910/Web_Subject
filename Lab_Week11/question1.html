@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <title>Question 1</title>
+        <style>
+            body {
+                padding: 20px;
+                font-size: 20px;
+            }
+            #get_FacultyAJAX_btn {
+                margin-bottom: 20px;
+            }
+            p {
+                margin: 0;
+            }
+        </style>
+        <script>
+            function get_FacultyAJAX() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    readyStateChangeHandler(xhttp);
+                };
+                xhttp.open("GET", "faculty.json", true);
+                xhttp.send();
+            }
+            function readyStateChangeHandler(xhttp) {
+                if (xhttp.readyState == 4) {
+                    if(xhttp.status == 200) {
+                        handleStatusSuccess(xhttp);
+                    } else {
+                        handleStatusFailure(xhttp);  
+                    }
+                }
+            }
+            function handleStatusSuccess(xhttp) {
+                // var json_text = xhttp.responseText;
+                var faculty_obj = JSON.parse(xhttp.responseText);
+                // console.log(faculty_obj);
+                display(faculty_obj);
+            }
+            function handleStatusFailure(xhttp) {
+                var displayDiv = document.getElementById("display");
+                displayDiv.innerHTML = "XMLHttpRequest failed: status " + xhttp.status;
+            }
+            function display(faculty_obj) {
+                var html = "<p><b>Name: </b>" + faculty_obj.name + "</p>";
+                html += "<p><b>Abbreviation: </b>" + faculty_obj.abbreviation + "</p>";
+                html += "<p><b>Email: </b>" + faculty_obj.email + "</p>";
+                html += "<p><b>Web: </b>" + faculty_obj.web + "</p>";
+                var displayDiv = document.getElementById("display");
+                displayDiv.innerHTML = html;
+            }
+        </script>
+    </head>
+    <body>
+        <div id="get_FacultyAJAX_btn">
+            <button onclick="get_FacultyAJAX()">Get Faculty Details</button>
+        </div>
+        <div id="display"></div>
+    </body>
+</html>

@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title>Question 2</title>
+        <style>
+            body {
+                padding: 20px;
+                font-size: 20px;
+            }
+            .box {
+                width: 150px;
+                height: 100px;
+                border: 2px solid black;
+                display: inline-block;
+                text-align: center;
+                line-height: 100px;
+                margin: 10px;
+                font-size: 24px;
+                font-size: 50px;
+            }
+            .animal {
+                display: inline-block;
+                cursor: pointer;
+            }
+        </style>
+        <script>
+            function dragStart(event) {
+                var dragId = event.target.id;
+                event.dataTransfer.setData("dragID", event.target.id);
+            }
+            function drop(event) {
+                var dropId = event.target.id;
+                var dragId = event.dataTransfer.getData("dragId");
+                var dog_count = parseInt(document.getElementById("dog_count").textContent);
+                var cat_count = parseInt(document.getElementById("cat_count").textContent);
+            
+                if(dragId == "dog_img" && dropId == "dog_box") {
+                    dog_count += 1;
+                    document.getElementById("dog_count").innerHTML = dog_count;
+                }
+                if(dragId == "cat_img" && dropId == "cat_box") {
+                    cat_count += 1;
+                    document.getElementById("cat_count").innerHTML = cat_count;
+                }
+            }
+            function dragOver(event){
+                event.preventDefault();
+            }
+        </script>
+    </head>
+    <body>
+        <h2>Drag an animal and drop it on the corresponding text.</h2>
+        <div>
+            <div class="box" id="dog_box" onDrop="drop(event)" onDragOver="dragOver(event)">
+                dog
+                <span id="dog_count">0</span>
+            </div>
+            <div class="box" id="cat_box" onDrop="drop(event)" onDragOver="dragOver(event)">
+                cat
+                <span id="cat_count">0</span>
+            </div>
+        </div>
+        <div>
+            <div class="animal"><img src="dog.jpg" alt="" id="dog_img" draggable="true" onDragStart="dragStart(event)"></div>
+            <div class="animal"><img src="cat.jpg" alt="" id="cat_img" draggable="true" onDragStart="dragStart(event)"></div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex2</title>
+    <style>
+        body{
+            padding: 50px;
+            font-size: 20px
+        }
+    </style>
+    <script>
+        function checkCalculation(){
+            ope = document.getElementById("operationSelection");
+            ope = ope.value
+            num1 = document.getElementById("num1");
+            num1 = Number(num1.value);
+            num2 = document.getElementById("num2");
+            num2 = Number(num2.value);
+            var result;
+            if(ope === "add")
+                result = num1 + num2;
+            else if(ope === "sub")
+                result = num1 - num2;
+            else if(ope === "multiplication")
+                result = num1 * num2;
+            // else if (ope === "division"){
+            //     if(num2 === 0)
+            //         result = null;
+            //     else
+            //         result = (num1 / num2).toFixed(0);
+            // }
+            inputResult = document.getElementById("result");
+            inputResult = Number(inputResult.value);
+            display = document.getElementById("displayCheck")
+            if(inputResult !== result){
+                // if(!result)
+                //     display.innerHTML = "Divisor can not be 0."
+                // else
+                display.innerHTML = `Incorrect, please try again. ${result}`
+            }
+            else
+                display.innerHTML = "Correct!"
+
+        }    
+    </script>
+</head>
+<body>
+    <div>
+        <input type="text" id="num1">
+        <select id="operationSelection">
+            <option value="add">+</option>
+            <option value="sub">-</option>
+            <option value="multiplication">*</option>
+            <!-- <option value="division">/</option> -->
+        </select>
+        <input type="text" id="num2">
+        <!-- <select id="operationResult">
+            <option value="equal">=</option>
+        </select> -->
+        =
+        <input type="text" id="result">
+        <button onClick="checkCalculation()">Check</button>
+        <span id="displayCheck"></span>
+    </div>
+</body>
+</html>

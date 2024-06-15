@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>Assignment_3 - Question_1</title>
+        <style>
+            body{
+                padding: 30px;
+                font-size: 20px;
+            }
+        </style>
+        <script>
+            function AdditionEquation() {
+                var num1 = Number(document.getElementById("num1").value);
+                var num2 = Number(document.getElementById("num2").value);
+                var num3 = Number(document.getElementById("num3").value);
+                var sum = num1 + num2 + num3;
+                var result = document.getElementById("EquationDisplay");
+                if(num1 && num2 && num3)
+                    result.value = `${num1} + ${num2} + ${num3} = ${sum}`;
+                else
+                    result.value = 'Any input is not filled.'
+            }
+            function MultiplicationEquation() {
+                var num1 = Number(document.getElementById("num1").value);
+                var num2 = Number(document.getElementById("num2").value);
+                var num3 = Number(document.getElementById("num3").value);
+                var mul = num1 * num2 * num3;
+                var result = document.getElementById("EquationDisplay");
+                result.value = `${num1} x ${num2} x ${num3} = ${mul}`;
+                if(num1 && num2 && num3)
+                    result.value = `${num1} x ${num2} x ${num3} = ${mul}`;
+                else
+                    result.value = 'Any input is not filled.'
+            }        
+        </script>
+    </head>
+    <body>
+        <label for="integer1">Enter integer 1:</label>
+        <input type="text" id="num1" name="integer1"/>
+        <br><br>
+        <label for="integer2">Enter integer 2:</label>
+        <input type="text" id="num2" name="integer2"/>
+        <br><br>
+        <label for="integer3">Enter integer 3:</label>
+        <input type="text" id="num3" name="integer3"/>
+        <br><br>
+        <button onclick="AdditionEquation()">Display Addition Equation</button>
+        <button onclick="MultiplicationEquation()">Display Multiplication Equation</button>
+        <br><br>
+        <label for="display">Equation Display:</label>
+        <input type="text" id="EquationDisplay" placeholder="Equation Display"/>
+    </body>
+</html>

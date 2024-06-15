@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>Lab3-Q4</title>
+        <script>
+            var lion_click = 0;
+            var frog_click = 0;
+            function lionBtn() {
+                lion_click += 1;
+                var count = document.getElementById("lion_count");
+                count.innerHTML = lion_click;
+                // count.style.color = "orange";
+            }
+            function frogBtn() {
+                frog_click += 1;
+                var count = document.getElementById("frog_count");
+                count.innerHTML = frog_click;
+                // count.style.color = "green";
+            }
+        </script>
+    </head>
+    <body>
+        <img src="img/lion.jpg" onclick="lionBtn()">
+        <img src="img/frog.jpg" onclick="frogBtn()">
+        <br><br>
+        <div style="font-size: 30px; color: orange;">Number of lion clicks: <span id="lion_count">0</span></div>
+        <div style="font-size: 30px; color: green">Number of frog clicks: <span id="frog_count">0</span></div>
+    </body>
+</html>

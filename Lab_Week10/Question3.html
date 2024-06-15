@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>Question 3</title>
+        <style>
+            body {
+                padding: 50px;
+                font-size: 20px;
+            }
+            textarea {
+                height: 200px;
+                width: 500px;
+            }
+        </style>
+        <script>
+            function viewJSON() {
+                var code = document.getElementById('subject_code').value;
+                var title = document.getElementById('subject_title').value;
+                var credit_point = document.getElementById('subject_credit_point').value;
+                var core = document.getElementById('subject_core').checked;
+
+                var obj = {};
+                obj.code = code;
+                obj.title = title;
+                obj.credit_point = credit_point;
+                obj.core = core;
+                var result = JSON.stringify(obj, null, 2);
+                
+                JSON_file = document.getElementById('show_JSONfile');
+                JSON_file.value = result;
+            }
+
+        </script>
+    </head>
+    <body>
+        <label for="subject_code">Subject code:</label>
+        <input type="text" id="subject_code"/>
+        <br><br>
+        <label for="subject_title">Subject title:</label>
+        <input type="text" id="subject_title"/>
+        <br><br>
+        <label>Subject credit point:</label>
+        <input type="text" id="subject_credit_point"/>
+        <br><br>
+        <label>Core subject:</label>
+        <input type="checkbox" id="subject_core"/>
+        <br><br>
+
+        <button onClick="viewJSON()">View JSON</button>
+        <br>
+        <textarea id="show_JSONfile"></textarea>
+    </body>
+</html>

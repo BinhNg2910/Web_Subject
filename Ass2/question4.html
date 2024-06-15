@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 4</title>
+    <script>
+        var chilly = "&#129398";
+        var frog = "&#128056";
+        var smiley = "&#128540";
+        var flower = "&#127804";
+        var count = 0;
+        function add_emoji(){
+            result = document.getElementById('display')
+            if(count % 2 == 0){
+                result.innerHTML = result.innerHTML + chilly + frog;
+            }
+            else{
+                result.innerHTML = result.innerHTML + smiley + flower;
+            }
+            count += 1;
+        }
+        function reset(){
+            count = 0;
+            result = document.getElementById('display');
+            result.innerHTML = "";
+        }
+    </script>
+    <style>
+        body{
+            font-size: 40px;
+            padding: 50px;
+        }
+        .text-field{
+            margin: 0 0 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="add_emoji()">Add emoji pattern</button>
+    <button onclick="reset()">Clear</button>
+    <br> <br>
+    <span id="display"></span>
+</body>
+</html>

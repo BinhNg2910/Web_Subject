@@ -1,0 +1,118 @@
+<html>
+    <head>
+        <title>Local storage demo</title>
+        <script>
+            var taskList = [];
+            function addTask() {
+                var task = document.getElementById("task");
+                task = task.value;
+                var priority = document.getElementById("priority");
+                priority = priority.value;
+                
+                currentDate = new Date();
+                var taskObj = {
+                    id: currentDate.getTime(),
+                    description: task,
+                    urgency: priority
+                };
+                // console.log(taskObj);
+
+                // add obj to array list
+                taskList.push(taskObj);
+                console.log(taskList);
+                // console.log(JSON.stringify(taskList));
+                // display all tasks
+                displayTasks();
+                
+                // save obj to local storage
+                LocalStorageTasks();
+            }
+
+            function displayTasks() {
+                var html = "";
+                for(var i = 0; i < taskList.length; i++) {
+                    var taskHTML = getHtmlForTask(taskList[i]);
+                    html += taskHTML;
+                }
+                var displayDiv = document.getElementById("taskDisplay");
+                displayDiv.innerHTML = html;
+            }
+
+            function deleteTask(taskID) {
+                // delete the object inside the array list
+                for(var i = 0; i < taskList.length; i++) {
+                    if(taskList[i].id == taskID)
+                    {
+                        taskList.splice(i, 1);
+                        break;
+                    }
+                }
+                // display tasks
+                displayTasks();
+                // save the new arraylist to local storage
+                LocalStorageTasks();
+            }
+
+            function getHtmlForTask(taskListObj) {
+                var html = "";
+                var deletebtn = "<span onClick='deleteTask(" + taskListObj.id + ")' style='cursor: pointer;'>&#10060</span>";
+                // html = taskListObj.id + " " + taskListObj.description + " " + taskListObj.urgency + "<br/>";
+                if(taskListObj.urgency == 'L') {
+                    html = "<span style=\"color: green;\">" + taskListObj.description + "</span>" + deletebtn + "<br/>"
+                }
+                else if(taskListObj.urgency == 'M') {
+                    html = "<span style=\"color: orange;\">" + taskListObj.description + "</span>" + deletebtn + "<br/>"
+                }
+                else if(taskListObj.urgency == 'H') {
+                    html = "<span style=\"color: red;\">" + taskListObj.description + "</span>" + deletebtn + "<br/>"
+                }
+                return html;
+            }
+
+            function LocalStorageTasks() {
+                var taskJSON = JSON.stringify(taskList);
+                localStorage.setItem("Task", taskJSON);
+                // localStorage.setItem("Silly", "Heo Lam rat xinh dep");
+            }
+            function loadTasks() {
+                // if(storageSupported) {
+                    // retrive json from local storage
+                    var JSONTaskList = localStorage.getItem("Task");
+                    // parse json into array of tasks
+                    if(JSONTaskList != null) {
+                        taskList = JSON.parse(JSONTaskList);
+                    }
+                    // display tasks
+                    displayTasks();
+                // }
+            }
+            function storageSupported(){
+                if (typeof(Storage) !== "undefined") {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        </script>
+        <style>
+            body {
+                padding: 20px;
+            }
+        </style>
+    </head>
+    <body onLoad="loadTasks()">
+        <h1>To Do List</h1>
+        Enter task:
+        <input type="text" id="task">
+
+        Priority:
+        <select id="priority">
+                <option value="L">Low</option>
+                <option value="M">Medium</option>
+                <option value="H">High</option>
+        </select>
+        <button onclick="addTask()">Add</button>
+        <div id="taskDisplay">
+        </div>
+    </body>
+</html>

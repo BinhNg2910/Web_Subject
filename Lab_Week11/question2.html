@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <title>Question 2</title>
+        <style>
+        body {
+            padding: 20px;
+            font-size: 20px;
+        }
+        #get_AirportAJAX_btn {
+            margin-bottom: 20px;
+        }
+        table {
+            border: 1px solid black;
+            border-collapse: separate;
+        }
+        th, td {
+            text-align: left;
+            border: 1px solid black;
+        }
+        </style>
+        <script>
+            function get_AirportAJAX() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    readyStateChangeHandler(xhttp);
+                };
+                xhttp.open("GET", "airport.json", true);
+                xhttp.send();
+            }
+            function readyStateChangeHandler(xhttp) {
+                if (xhttp.readyState == 4) {
+                    if(xhttp.status == 200) {
+                        handleStatusSuccess(xhttp);
+                    } else {
+                        handleStatusFailure(xhttp);  
+                    }
+                }
+            }
+            function handleStatusSuccess(xhttp) {
+                // var json_text = xhttp.responseText;
+                var airport_obj = JSON.parse(xhttp.responseText);
+                // console.log(faculty_obj);
+                display(airport_obj);
+            }
+            function handleStatusFailure(xhttp) {
+                var displayDiv = document.getElementById("display");
+                displayDiv.innerHTML = "XMLHttpRequest failed: status " + xhttp.status;
+            }
+            function display(airport_obj) {
+                var html = "<p><b>Search Query: </b>" + airport_obj.searchQuery + "</p>";
+                html += "<table><tr>"; 
+                html += "<th><b>Airport</b></th>";
+                html += "<th><b>ICAO</b></th>";
+                html += "<th><b>IATA</b></th>";
+                html += "<th><b>Location</b></th>";
+                html += "</tr>"
+                for(var i = 0; i < airport_obj.searchResult.length; i++) {
+                    html += "<tr>"
+                    html += "<td>" + airport_obj.searchResult[i].airportName + "</td>";
+                    html += "<td>" + airport_obj.searchResult[i].ICAO + "</td>";
+                    html += "<td>" + airport_obj.searchResult[i].IATA + "</td>";
+                    html += "<td>" + airport_obj.searchResult[i].city + ", " + airport_obj.searchResult[i].country + "</td>";
+                }
+                var displayDiv = document.getElementById("display");
+                displayDiv.innerHTML = html;
+            }
+        </script>
+    </head>
+    <body>
+        <div id="get_AirportAJAX_btn">
+            <button onclick="get_AirportAJAX()">Search Airport</button>
+        </div>
+        <div id="display"></div>
+    </body>
+</html>

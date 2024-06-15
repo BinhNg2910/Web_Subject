@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="question1withStyle.xsl"?>
+<report date="2022/02/15">
+    <device_name>toronto</device_name>
+    <user username="aw123">
+        <name>Anna Wilson</name>
+        <group>Student</group>
+        <login>
+            <time>2022/01/30 04:50:50</time>
+            <status>success</status>
+        </login>
+        <login>
+            <time>2022/02/01 01:30:56</time>
+            <status>success</status>
+        </login>
+        <login>
+            <time>2022/02/01 02:00:10</time>
+            <status>fail</status>
+        </login>
+    </user>
+    <user username="jasonm">
+        <name>Jason Miles</name>
+        <group>Staff</group>
+        <login>
+            <time>2022/01/29 15:04:22</time>
+            <status>fail</status>
+        </login>
+        <login>
+            <time>2022/02/01 14:55:04</time>
+            <status>success</status>
+        </login>
+    </user>
+    <user username="vbn267">
+        <name>Van Binh Nguyen</name>
+        <group>Student</group>
+        <login>
+            <time>2024/10/29 17:29:03</time>
+            <status>fail</status>
+        </login>
+        <login>
+            <time>2024/11/17 17:11:03</time>
+            <status>success</status>
+        </login>
+    </user>
+        <user username="jessica">
+        <name>Jessica Tran</name>
+        <group>Student</group>
+        <login>
+            <time>2024/11/17 17:11:03</time>
+            <status>fail</status>
+        </login>
+        <login>
+            <time>2024/11/17 17:11:03</time>
+            <status>success</status>
+        </login>
+    </user>
+</report>

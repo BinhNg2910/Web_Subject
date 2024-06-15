@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>Assignement_3 - Question_3</title>
+        <style>
+            body{
+                font-size: 30px;
+                padding: 30px;
+            }
+        </style>
+        <script>
+            function EmojiDisplay() {
+                var emoji_type = document.getElementById("emoji").value;
+                var display = document.getElementById("display");
+                var quantity = Number(document.getElementById("quantity").value);
+                display.innerHTML = "emoji_type";
+
+                if (emoji_type === "flower") {
+                    var emoji_str = "";
+                    for (let i = 0; i < quantity; i++) {
+                        emoji_str += "&#127804";
+                    }
+                    display.innerHTML = emoji_str;
+                }
+                else if (emoji_type === "frog") {
+                    var emoji_str = "";
+                    for (let i = 0; i < quantity; i++) {
+                        emoji_str += "&#128056";
+                    }
+                    display.innerHTML = emoji_str;
+                }
+                else 
+                    display.innerHTML = "Invalid emoji choice. You can only enter frog or flower"
+
+        }
+        </script>
+    </head>
+    <body>
+        <p>Enter emoji choice (frog or flower)</p>
+        <input type="text" id="emoji"/>
+        <p>Enter emoji count</p>
+        <input type="text" id="quantity"/>
+        <br><br>
+        <button onclick="EmojiDisplay()">Display Emoji</button>
+        <br><br>
+        <div id="display"></div>
+    </body>
+</html>

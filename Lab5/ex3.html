@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excercise 3</title>
+    <style>
+        body{
+            font-size: 30px;
+            padding: 30px;
+        }
+    </style>
+    <script>
+        var num = 0
+        function increaseNum(){
+            num += 1;
+            display = document.getElementById('display');
+            display.innerHTML = num;
+        }
+        function reset(){
+            num = 0;
+            display = document.getElementById('display');
+            display.innerHTML = num;
+        }
+    </script>
+</head>
+<body>
+    <button onClick="increaseNum()">Increase counter</button>
+    <button onClick="reset()">Reset counter</button>
+    <span id="display">0</span>
+</body>
+</html>

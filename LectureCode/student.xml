@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<student xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="student.xsd">
+    <firstName>Brandon</firstName>
+    <lastName>Nguyen</lastName>
+    <email>binh@gmail.com</email>
+    <mobile>123456789</mobile>
+</student>

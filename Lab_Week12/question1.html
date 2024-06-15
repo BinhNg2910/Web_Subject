@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <title>Question 1</title>
+        <style>
+            body {
+                padding: 20px;
+                font-size: 20px;
+            }
+            input {
+                width: 50px;
+            }
+        </style>
+        <script>
+            function drawTriangle() {
+                var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+                
+                context.clearRect(0, 0, canvas.width, canvas.height)
+
+                var x1 = parseInt(document.getElementById("1st_x").value);
+                var y1 = parseInt(document.getElementById("1st_y").value);
+                var x2 = parseInt(document.getElementById("2nd_x").value);
+                var y2 = parseInt(document.getElementById("2nd_y").value);
+                var x3 = parseInt(document.getElementById("3rd_x").value);
+                var y3 = parseInt(document.getElementById("3rd_y").value);
+
+                context.beginPath();
+                context.moveTo(x1, y1);
+                context.lineTo(x2, y2);
+                context.lineTo(x3, y3);
+                context.closePath();
+                context.fillStyle = "#DDA0DD";
+                context.fill();
+
+                var med1 = [(x2 + x3) / 2, (y2 + y3) / 2]
+                var med2 = [(x1 + x3) / 2, (y1 + y3) / 2]
+                var med3 = [(x1 + x2) / 2, (y1 + y2) / 2]
+                context.lineWidth = 2;
+                context.beginPath();
+                context.moveTo(x1, y1);
+                context.lineTo(med1[0], med1[1]);
+                context.moveTo(x2, y2);
+                context.lineTo(med2[0], med2[1]);
+                context.moveTo(x3, y3);
+                context.lineTo(med3[0], med3[1]);
+                context.strokeStyle = "white";
+                context.stroke();
+
+                context.beginPath();
+                context.moveTo(x1, y1);
+                context.lineTo(x2, y2);
+                context.lineTo(x3, y3);
+                context.closePath();
+                context.strokeStyle = "#961F96";
+                context.stroke();
+                
+                context.font = "bold 16px Arial";
+                context.fillStyle = "black";
+                context.fillText("A", x1, y1);
+                context.fillText("B", x2, y2);
+                context.fillText("C", x3, y3);
+            }
+        </script>
+    </head>
+    <body>
+        <label>
+            Enter coordinate for 1st point:
+            X = <input type="text" id="1st_x">
+            Y = <input type="text" id="1st_y">
+        </label>
+        <br>
+        <label>
+            Enter coordinate for 2nd point:
+            X = <input type="text" id="2nd_x">
+            Y = <input type="text" id="2nd_y">
+        </label>
+        <br>
+        <label>
+            Enter coordinate for 3rd point:
+            X = <input type="text" id="3rd_x">
+            Y = <input type="text" id="3rd_y">
+        </label>
+        <br>
+        <canvas id="canvas" width="1200" height="500" style="border: 2px dashed black">
+            Your browser does not support canvas.
+        </canvas>
+        <br><br>
+        <button onclick="drawTriangle()">Draw Triangle</button>
+    </body>
+</html>

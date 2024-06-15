@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 2</title>
+    <script>
+        function emoji_click(){
+            stu_num = document.getElementById("student_number");
+            stu_num.innerHTML = Number(stu_num.innerHTML) - 10;
+        }
+        function reset_stu_number(){
+            stu_num = document.getElementById("student_number");
+            stu_num.innerHTML = 8568418
+        }
+    </script>
+    <style>
+        body{
+            font-size: 40px;
+            padding: 50px;
+        }
+    </style>
+</head>
+<body>
+    <p><b>Student name:</b> Nguyen Van Binh (Brandon)</p>
+    <p><u>UOW email:</u> vbn267@uowmail.edu.au</p>
+    <p onclick="emoji_click()" style="font-size: 100px; cursor: pointer;">&#128016</p>
+    <button onclick="reset_stu_number()">Clear</button>
+    <p><b>Student number:</b> <span id="student_number">8568418</span></p>
+</body>
+</html>

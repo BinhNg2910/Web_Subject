@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>Assignment_3 - Question_4</title>
+        <style>
+            body{
+                font-size: 30px;
+                padding: 30px;
+            }
+            textarea {
+                height: 300px;
+                width: 80%;
+            }
+        </style>
+        <script>
+            function XML_Generator() {
+                var firstName = document.getElementById("first_name").value.trim();
+                var lastName = document.getElementById("last_name").value.trim();
+                var passport = document.getElementById("passport_number").value.trim();
+                var xml_text =  `<?xml version=\"1.0\"?>` + 
+                                `<information>\n` + 
+                                `   <firstName>${firstName}<firstName/>\n` +
+                                `   <lastName>${lastName}<lastName/>\n` +
+                                `   <passport>${passport}<passport/>\n` +
+                                "</information>\n";
+                var display = document.getElementById('xml_text');
+                display.innerHTML = xml_text;
+            }
+        </script>
+    </head>
+    <body>
+        <textarea id="xml_text"></textarea>
+        <br><br>
+        <label>Enter your first name:</label>
+        <input type="text" id="first_name"/>
+        <br><br>
+        <label>Enter your last name:</label>
+        <input type="text" id="last_name"/>
+        <br><br>
+        <label>Enter your passport number:</label>
+        <input type="text" id="passport_number"/>
+        <br><br>
+        <button onclick="XML_Generator()">Generate XML</button>
+
+    </body>
+</html>

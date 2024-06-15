@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 3</title>
+    <script>
+            function show_UOW_email(){
+                mail = document.getElementById('display')
+                mail.value = "vbn267@uowmail.edu.au"
+            }
+            function show_fullname(){
+                mail = document.getElementById('display')
+                mail.value = "Nguyen Van Binh"
+            }
+            function reset_stu_number(){
+                mail = document.getElementById('display')
+                mail.value = ""
+            }
+    </script>
+    <style>
+        body{
+            font-size: 40px;
+            padding: 50px;
+        }
+        .text-field{
+            margin: 0 0 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="text-field">
+        <input type="text" id="display" size="50px">
+    </div>
+    
+    <button onclick="show_UOW_email()">Show UOW email</button>
+    <button onclick="show_fullname()">Show full name</button>
+    <button onclick="reset_stu_number()">Clear</button>
+</body>
+</html>

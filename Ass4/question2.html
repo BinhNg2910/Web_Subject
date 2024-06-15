@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <title>Assignment 4 - Question 2 - Task 2</title>
+        <script>
+            function get_LoginReport() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    readyStateChangeHandler(xhttp);
+                };
+                xhttp.open("GET", "question2.json", true);
+                xhttp.send();
+            }
+            function readyStateChangeHandler(xhttp) {
+                if(xhttp.readyState == 4) {  
+                    if(xhttp.status == 200) {
+                        handleStatusSuccess(xhttp);
+                    } else {
+                        handleStatusFailure(xhttp);
+                    }
+                }
+            }
+            function handleStatusSuccess(xhttp) {
+                // var jsonText = xhttp.responseText;
+                var report_obj = JSON.parse(xhttp.responseText);
+                display(report_obj)
+            }
+            function handleStatusFailure(xhttp) {
+                var displayDiv = document.getElementById("display");
+                display.innerHTML = "XMLHttpRequest failed: status " + xhttp.status;
+            }
+            
+            function display(obj) {
+                var html = "<h1>Login Report " + obj.login_report_date + "</h1>";
+                html += "<p id=\"device\"><b>Device name: </b>" + obj.device_name + "</p>"
+                for(var i = 0; i < obj.user_list.length; i++) {
+                    html += "<p><b>Username: </b>" + obj.user_list[i].username + "</p>"
+                    html += "<p><b>Name: </b>" + obj.user_list[i].name + "</p>"
+                    html += "<p><b>Group: </b>" + obj.user_list[i].group + "</p>"
+                    html += "<ul id=\"login_list\">";
+                    for(var j = 0; j < obj.user_list[i].login.length; j++) {
+                        html += "<li>" + obj.user_list[i].login[j].login_time + ": " + obj.user_list[i].login[j].status + "</li>";
+                    }
+                    html += "</ul>";
+                }
+                var display = document.getElementById("display");
+                display.innerHTML = html;
+            }
+        </script>
+        <style>
+            body {
+                padding: 20px;
+                font-size: 20px;
+            }
+            p {
+                margin: 0;
+            }
+            #device{
+                margin-bottom: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <button onclick="get_LoginReport()">Get Login Report</button>
+        <br/><br/>
+        <!-- <textarea id="display"></textarea> -->
+        <div id="display"></div>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE studentTable[
+    <!ELEMENT studentTable (student)>
+    <!ELEMENT student (subject+)>
+    <!ATTLIST student
+        id CDATA #REQUIRED
+        lastName CDATA #REQUIRED
+        firstName CDATA #REQUIRED
+    >
+    <!ELEMENT subject (credit, mark, grade)>
+    <!ATTLIST subject
+        code CDATA #REQUIRED
+    >
+    <!ELEMENT credit (#PCDATA)>
+    <!ELEMENT mark (#PCDATA)>
+    <!ELEMENT grade (#PCDATA)>
+]>
+<studentTable>
+    <student id="1231234" lastName="Smith" firstName="John">
+        <subject code="MATH101">
+            <credit>4</credit>
+            <mark>85</mark>
+            <grade>A</grade>
+        </subject>
+
+        <subject code="ECON111">
+            <credit>5</credit>
+            <mark>70</mark>
+            <grade>B</grade>
+        </subject>
+
+        <subject code="CS100">
+            <credit>5</credit>
+            <mark>80</mark>
+            <grade>A</grade>
+        </subject>
+
+        <subject code="LAW121">
+            <credit>6</credit>
+            <mark>75</mark>
+            <grade>B</grade>
+        </subject>
+    </student>
+</studentTable>

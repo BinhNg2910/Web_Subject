@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excercise 3</title>
+    <style>
+        body{
+            font-size: 30px;
+            padding: 30px;
+        }
+    </style>
+    <script>
+        var num = 0
+        function increaseNum(){
+            num += 1;
+            display = document.getElementById('display');
+            display.innerHTML = num;
+        }
+        function reset(){
+            num = 0;
+            display = document.getElementById('display');
+            display.innerHTML = num;
+        }
+        var start;
+        function startAnimation(){
+            start = setInterval(increaseNum, 1000);
+        }
+        function stopAnimation(){
+            clearInterval(start);
+        }
+    </script>
+</head>
+<body>
+    <button onClick="startAnimation()">Start counter</button>
+    <button onClick="stopAnimation()">Stop counter</button>
+    <button onClick="reset()">Reset counter</button>
+    <span id="display">0</span>
+</body>
+</html>

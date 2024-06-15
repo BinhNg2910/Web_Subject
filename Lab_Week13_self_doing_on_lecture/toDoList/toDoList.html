@@ -1,0 +1,200 @@
+<html>
+    <head>
+        <title>local storage example</title>
+
+        <script>
+            // return true if local storage is supported
+            // otherwise return false
+            function storageSupported(){
+                if (typeof(Storage) !== "undefined") {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            // list of tasks
+            // each task is an object that contains:
+            // {
+            //   id: the task id (the time when task created)
+            //   task: the task name
+            //   urgency: the task urgency (High, Medium, or Low)
+            // }
+            var toDoList = [];
+
+            function addTask(){
+                // get task info from user and create task object
+                var taskObj = createTask();
+
+                // add task object to the list of tasks
+                toDoList.push(taskObj);
+
+                // display updated list of tasks
+                console.log(toDoList);
+                displayTasks();
+
+                // store updated list of tasks into local storage
+                saveTasksToLocal();
+            }
+
+            function createTask(){
+                // get task info from user
+                var taskTf = document.getElementById("task");
+                var taskName = taskTf.value;
+                
+                var urgencySelect = document.getElementById("urgency");
+                var taskUrgency = urgencySelect.value;
+
+                // create task object
+                var taskObj = {};
+                var currentDate = new Date();
+                taskObj.id = currentDate.getTime();
+                taskObj.task = taskName;
+                taskObj.urgency = taskUrgency;
+
+                // return task object
+                return taskObj;
+            }
+
+            function displayTasks(){
+                // construct the html contains all the tasks
+                var html = "";
+                
+                // use for loop to go through all the tasks
+                for(var i=0; i < toDoList.length; i++){
+                    var taskObj = toDoList[i];
+                    var taskHTML = getTaskHTML(taskObj);
+                    html = html + taskHTML;
+                }
+
+                // display tasks in the DIV
+                var displayDiv = document.getElementById("taskDisplay");
+                displayDiv.innerHTML = html;
+            }
+
+            function getTaskHTML(taskObj){
+                // construct the html for displaying the task
+                var html = "<p>";
+
+                // task description in color
+                var taskDesc = getTaskDescriptionHTML(taskObj);
+                html += taskDesc;
+
+                // some spaces
+                html += "&nbsp;&nbsp;&nbsp;&nbsp;";
+
+                // task button
+                var taskButton = getTaskDeleteButtonHTML(taskObj);
+                html += taskButton;
+
+                html += "</p>";
+
+                return html;
+            }
+
+            function getTaskDescriptionHTML(taskObj){
+                // using different color for the urgency
+                var desc = "";
+                if (taskObj.urgency == "High"){
+                    desc = "<span style='color:red;'>" 
+                           + taskObj.task 
+                           + "</span>";
+                }
+                else if (taskObj.urgency == "Medium"){
+                    desc = "<span style='color:orange;'>" 
+                           + taskObj.task 
+                           + "</span>";
+                }
+                else if (taskObj.urgency == "Low"){
+                    desc = "<span style='color:green;'>" 
+                           + taskObj.task 
+                           + "</span>";
+                }
+
+                return desc;
+            }
+
+            function getTaskDeleteButtonHTML(taskObj){
+                var deleteEmoji = "&#10060;";
+
+                var deleteButton = "<span onClick='deleteTask(" + taskObj.id + ")'>"
+                                   + deleteEmoji
+                                   + "</span>";
+
+                return deleteButton;
+            }
+
+            function deleteTask(taskId){
+                // remove task object from the list of tasks
+                // search for task id
+                for(var i=0; i < toDoList.length; i++){
+                    var taskObj = toDoList[i];
+                    if (taskObj.id == taskId){
+                        // delete task out of the task array
+                        toDoList.splice(i, 1);
+                    }
+                }
+
+                // display updated list of tasks
+                console.log(toDoList);
+                displayTasks();
+
+                // store updated list of tasks into local storage
+                saveTasksToLocal();
+            }
+
+            function saveTasksToLocal(){
+                // check if local storage supported
+                if(storageSupported()){
+                    // translate task array into JSON string
+                    var toDoListJSON = JSON.stringify(toDoList);
+
+                    // store JSON string into local storage
+                    localStorage.setItem("toDoListJSON", toDoListJSON);
+                }
+            }
+
+            function loadTasks(){
+                // check if local storage supported
+                if(storageSupported()){
+                    // read saved JSON from local storage
+                    var toDoListJSON = localStorage.getItem("toDoListJSON");
+                    
+                    // translate JSON string to task array
+                    if(toDoListJSON != null){
+                        toDoList = JSON.parse(toDoListJSON);
+                    }
+
+                    // display list of tasks
+                    console.log(toDoList);
+                    displayTasks();
+                }
+            }
+
+            
+
+        </script>
+    </head>
+
+    <body onLoad="loadTasks()">
+        Task:
+        <input type="text" id="task" />
+
+        Urgency:
+        <select id="urgency">
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low" selected="selected">Low</option>
+        </select>
+
+        <button onClick="addTask()">
+            Add
+        </button>
+
+        <br /><br />
+
+        <div id="taskDisplay">
+        </div>
+
+    </body>
+</html>

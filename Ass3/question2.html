@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Assignement_3 - Question_2</title>
+        <script>
+            var counter = 0;
+            var stuNum = 8568418;
+            function IncreaaseStudentNumber() {
+                var showStudentNumber = document.getElementById("showStudentNumber")
+                showStudentNumber.innerHTML = `${stuNum} + ${counter} = ${stuNum + counter}`;
+                counter += 2;
+            }
+            var schedule;
+            function startAnimation() {
+                schedule = setInterval(IncreaaseStudentNumber, 1000);
+            }
+            function stopAnimation() {
+                clearInterval(schedule);
+                showStudentNumber.innerHTML = ""
+                counter = 0;
+            }
+        </script>
+        <style>
+            body {
+                padding: 20px;
+                font-size: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>Student number: 8568418</h1>
+        </div>
+        <button onclick="startAnimation()">Start Animation</button>
+        <button onclick="stopAnimation()">Stop Animation</button>
+        <br><br>
+        <span id="showStudentNumber"></span>
+    </body>
+</html>

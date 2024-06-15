@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>Lab3-Q2</title>
+        <script>
+            function lionBtn() {
+                var displayTextField = document.getElementById("text-display");
+                displayTextField.value = "The Lion Button is clicked";
+            }
+            function frogBtn() {
+                var displayTextField = document.getElementById("text-display");
+                displayTextField.value = "The Frog Button is clicked";
+            }
+        </script>
+    </head>
+    <body>
+        <button onclick="lionBtn()" style="font-size: 30px;">Lion</button>
+        <button onclick="frogBtn()" style="font-size: 30px;">Frog</button>
+        <br><br>
+        <input type="text" id="text-display" style="font-size: 40px;">
+    </body>
+</html>

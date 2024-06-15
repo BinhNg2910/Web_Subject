@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Lab3-Q4</title>
+        <script>
+            var lion_click = "", frog_click = "";
+            // var lion_count = 0, frog_count = 0;
+            const lion_icon = "&#x1F981", frog_icon = "&#x1F438";
+            function lionBtn() {
+                // lion_count += 1;
+                // if (lion_count >= 15) {
+                //     lion_count = 0;
+                //     lion_click = "";
+                // }
+                lion_click += lion_icon;
+                var count = document.getElementById("lion_count");
+                count.innerHTML = lion_click;
+            }
+            function frogBtn() {
+                // frog_count += 1;
+                // if (frog_count >= 15) {
+                //     frog_count = 0;
+                //     frog_click = "";
+                // }
+                frog_click += frog_icon;
+                var count = document.getElementById("frog_count");
+                count.innerHTML = frog_click;
+            }
+        </script>
+    </head>
+    <body>
+        <img src="img/lion.jpg" onclick="lionBtn()">
+        <span id="lion_count"></span>
+        <br><br>
+        <img src="img/frog.jpg" onclick="frogBtn()">
+        <span id="frog_count"></span>
+    </body>
+</html>

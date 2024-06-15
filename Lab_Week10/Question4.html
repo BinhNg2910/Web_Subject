@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>Question 4</title>
+        <style>
+            body {
+                padding: 50px;
+                font-size: 20px;
+            }
+            textarea {
+                height: 200px;
+                width: 500px;
+            }
+        </style>
+        <script>
+            function JSON_read() {
+                var JSON_file = document.getElementById('show_JSONfile').value;
+                var obj = JSON.parse(JSON_file);
+                code = document.getElementById('subject_code');
+                code.value = obj.code;
+                title = document.getElementById('subject_title');
+                title.value = obj.title;
+                credit_point = document.getElementById('subject_credit_point');
+                credit_point.value = obj.credit_point;
+                core = document.getElementById('subject_core');
+                core.checked = obj.core;
+            }
+        </script>
+    </head>
+    <body>
+        <textarea id="show_JSONfile">
+            {
+                "code": "MATH101",
+                "title": "Abstract Algebra",
+                "credit_point": "4",
+                "core": true
+            }
+        </textarea>
+        <br>
+        <button onClick="JSON_read()">Read JSON</button>
+        <br><br>
+
+        <label for="subject_code">Subject code:</label>
+        <input type="text" id="subject_code"/>
+        <br><br>
+        <label for="subject_title">Subject title:</label>
+        <input type="text" id="subject_title"/>
+        <br><br>
+        <label>Subject credit point:</label>
+        <input type="text" id="subject_credit_point"/>
+        <br><br>
+        <label>Core subject:</label>
+        <input type="checkbox" id="subject_core"/>
+        <br><br>
+    </body>
+</html>
